@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cool Gradient Background</title>
+  <style>
+    html,
+    body {
+      font-family: 'Manrope', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Logo styling */
+    .logo-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+      }
+  
+      .logo-container img {
+        width: 100px; /* Adjust the size of the logo as needed */
+        height: auto;
+      }
+  
+
+    .text-container {
+      z-index: 100;
+      font-family: Manrope;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      font-size: 96px ;
+      color: white;
+      opacity: 0.8;
+      user-select: none;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-container .key {
+      font-size: 5vw;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    /* Color and blending settings */
+    :root {
+      --color-bg1: rgb(55, 1, 83);
+      --color-bg2: rgb(0, 6, 26);
+      --color1: 18, 113, 255;
+      --color2: 221, 74, 255;
+      --color3: 100, 220, 255;
+      --color4: 200, 50, 50;
+      --color5: 180, 180, 50;
+      --color-interactive: 140, 100, 255;
+      --circle-size: 80%;
+      --blending: hard-light;
+    }
+
+    /* Background animations */
+    @keyframes moveInCircle {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(180deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes moveVertical {
+      0% {
+        transform: translateY(-50%);
+      }
+
+      50% {
+        transform: translateY(50%);
+      }
+
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    @keyframes moveHorizontal {
+      0% {
+        transform: translateX(-50%) translateY(-10%);
+      }
+
+      50% {
+        transform: translateX(50%) translateY(10%);
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(-10%);
+      }
+    }
+
+    .gradient-bg {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+      top: 0;
+      left: 0;
+    }
+
+    .gradients-container {
+      filter: blur(40px);
+      width: 100%;
+      height: 100%;
+    }
+
+    .g1,
+    .g2,
+    .g3,
+    .g4,
+    .g5 {
+      position: absolute;
+      background-repeat: no-repeat;
+      mix-blend-mode: var(--blending);
+    }
+
+    .g1 {
+      background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%);
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+      transform-origin: center center;
+      animation: moveVertical 30s ease infinite;
+    }
+
+    .g2 {
+      background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%);
+      width: var(--circle-size);
+      height: var(--circle-size);
+      transform-origin: calc(50% - 400px);
+      animation: moveInCircle 20s reverse infinite;
+    }
+
+    .g3 {
+      background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%);
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2 + 200px);
+      left: calc(50% - var(--circle-size) / 2 - 500px);
+      transform-origin: calc(50% + 400px);
+      animation: moveInCircle 40s linear infinite;
+    }
+
+    .g4 {
+      background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%);
+      width: var(--circle-size);
+      height: var(--circle-size);
+      transform-origin: calc(50% - 200px);
+      animation: moveHorizontal 40s ease infinite;
+    }
+
+    .g5 {
+      background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%);
+      width: calc(var(--circle-size) * 2);
+      height: calc(var(--circle-size) * 2);
+      top: calc(50% - var(--circle-size));
+      left: calc(50% - var(--circle-size));
+      transform-origin: calc(50% - 800px) calc(50% + 200px);
+      animation: moveInCircle 20s ease infinite;
+    }
+
+    .interactive {
+      background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%);
+      width: 100%;
+      height: 100%;
+      top: -50%;
+      left: -50%;
+    }
+
+    /* New Key Press Animation */
+    @keyframes pressDown1 {
+      30%,
+      40%,
+      100% {
+        transform: translateY(0);
+      }
+
+      35% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown2 {
+      70%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      75% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown3 {
+      30%,
+      40%,
+      100% {
+        transform: translateY(0);
+      }
+
+      35% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown4 {
+      40%,
+      50%,
+      100% {
+        transform: translateY(0);
+      }
+
+      45% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown5 {
+      20%,
+      30%,
+      100% {
+        transform: translateY(0);
+      }
+
+      25% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown6 {
+      60%,
+      70%,
+      100% {
+        transform: translateY(0);
+      }
+
+      65% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown7 {
+      10%,
+      20%,
+      100% {
+        transform: translateY(0);
+      }
+
+      15% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown8 {
+      35%,
+      45%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes pressDown10 {
+        30%,
+        40%,
+        100% {
+          transform: translateY(0);
+        }
+  
+        15% {
+          transform: translateY(10px);
+        }
+    }
+
+    @keyframes pressDown12 {
+        60%,
+        70%,
+        100% {
+          transform: translateY(0);
+        }
+  
+        35% {
+          transform: translateY(10px);
+        }
+    }
+
+    @keyframes pressDown14 {
+        20%,
+        30%,
+        100% {
+          transform: translateY(0);
+        }
+  
+        25% {
+          transform: translateY(10px);
+        }
+    }
+
+    /* Apply animations to individual letters */
+    .key:nth-child(1) {
+      animation: pressDown1 2s infinite;
+    }
+
+    .key:nth-child(2) {
+      animation: pressDown2 3s infinite;
+    }
+
+    .key:nth-child(3) {
+      animation: pressDown3 4s infinite;
+    }
+
+    .key:nth-child(4) {
+      animation: pressDown4 2.5s infinite;
+    }
+
+    .key:nth-child(5) {
+      animation: pressDown5 2.5s infinite;
+    }
+
+    .key:nth-child(6) {
+      animation: pressDown6 3.5s infinite;
+    }
+
+    .key:nth-child(7) {
+      animation: pressDown7 2.2s infinite;
+    }
+
+    .key:nth-child(8) {
+      animation: pressDown8 3.2s infinite;
+    }
+
+    .key:nth-child(10) {
+        animation: pressDown10 3.2s infinite;
+    }
+
+    .key:nth-child(12) {
+        animation: pressDown12 3.2s infinite;
+    }
+
+    .key:nth-child(14) {
+        animation: pressDown14 3.2s infinite;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 300px;
+      font-size: 20px;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      background-color: transparent;
+      color: white;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .search-bar input:focus {
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+
+    <div class="logo-container">
+        <img src="/static/TheEye.png" alt="Logo"> <!-- Replace with your logo path -->
+    </div>
+
+  <div class="gradient-bg">
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+    </div>
+  </div>
+
+  <div class="text-container">
+    <span class="key">V</span>
+    <span class="key">a</span>
+    <span class="key">l</span>
+    <span class="key">i</span>
+    <span class="key">d</span>
+    <span class="key">a</span>
+    <span class="key">t</span>
+    <span class="key">e</span>
+    
+    <span class="key">@</span>
+    <span class="key">T</span>
+    <span class="key">h</span>
+    <span class="key">e</span>
+    <span class="key">E</span>
+    <span class="key">y</span>
+    <span class="key">e</span>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search...">
+  </div>
+</body>
+
+</html>

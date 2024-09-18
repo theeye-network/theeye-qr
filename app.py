@@ -3,6 +3,10 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/<path:route>')
 def render_certificate(route):
     image_path = f"/static/{route}.png"
